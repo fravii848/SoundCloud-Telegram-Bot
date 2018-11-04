@@ -1,0 +1,11 @@
+{
+    "start": "Ahoj! Pošlete název skladby a získejte seznam skladeb ke stažení.",
+    "link": "Pošlete mi odkaz",
+    "nfound": "Nic nalezeno.",
+    "uerror": "Něco se pokazilo.",
+    "smusic": "Vyberte skladbu ke stažení: ",
+    "error": "Během požadavku došlo k chybě.",
+    "ulink": "Tento odkaz není podporován.",
+    "good": "Začněte stahovat",
+    "reg_completed": "Registrace byla dokončena"
+  }
