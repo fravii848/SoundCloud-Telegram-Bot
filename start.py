@@ -59,7 +59,7 @@ def reply_by_link(message, del_id):
         
         bot.delete_message(chat_id=message.chat.id, message_id=del_id)
     except:
-        pass
+        bot.send_message(id, get_text(id, 'uerror'))
 
 def reply_music(id, code, mcode):
     try:
@@ -70,7 +70,7 @@ def reply_music(id, code, mcode):
 
         del temp, temp2
     except:
-        pass
+        bot.send_message(id, get_text(id, 'uerror'))
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_query(call):
@@ -114,14 +114,21 @@ def command_receive(message):
 
     try:
         if len(message.text) >= 4 and 'http' not in message.text:
+            bot.clear_step_handler_by_chat_id(id)
             a = get_json(get_web(f'https://api.soundcloud.com/tracks?q={message.text}&{app_end}').text)
 
             if len(a) <= 1:
                 bot.send_message(id, get_text(id, 'nfound'))
             else:
                 bot.send_message(id, get_text(id, 'smusic'), reply_markup=generate_markup(a))
-    except Exception as e:
-        print(e)
+    except:
+        bot.send_message(id, get_text(id, 'uerror'))
+
+def run():
+    try:
+        bot.polling(none_stop=True)
+    except:
+        run()
 
 if __name__ == "__main__":
-    bot.polling(none_stop=True)
+    run()
